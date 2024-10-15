@@ -36,6 +36,7 @@ from .base import (
     StorageNameSpace,
     QueryParam,
 )
+from dotenv import load_dotenv
 
 def always_get_an_event_loop() -> asyncio.AbstractEventLoop:
     try:
@@ -49,6 +50,9 @@ def always_get_an_event_loop() -> asyncio.AbstractEventLoop:
 
 @dataclass
 class LightRAG:
+    # Load environment variables from .env file
+    load_dotenv()
+
     working_dir: str = field(
         default_factory=lambda: f"./lightrag_cache_{datetime.now().strftime('%Y-%m-%d-%H:%M:%S')}"
     )
